@@ -1,0 +1,5 @@
+Needs:
+
+App jsx- renders home page
+board jsx- contains cells. stores info about each cell in state
+cell jsx- renders each cell, renders based on prop passed in from board

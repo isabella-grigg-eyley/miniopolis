@@ -1,0 +1,54 @@
+
+
+.content {
+  margin: auto;
+  width: 500px;
+  height: 500px;
+}
+
+#gameCanvas {
+  border: 1px solid black;
+  box-shadow: 
+  0 0 60px 30px white,
+  0 0 100px 60px magenta,
+  0 0 140px 100px blueviolet;
+}
+
+.page {
+  width: 100vh;
+  height: 100vh;
+}
+
+.front-page-box {
+  width: 30%;
+  height: 30%;
+  max-width: 300px;
+  max-height: 200px;
+  border: solid grey 10px;
+  position: relative;
+  left: 33%;
+  top: 33%;
+  text-align: -webkit-center;
+  background-color: green;
+}
+
+* {
+  background-color: lightgrey;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  width: 100vh;
+  height: 100vh;
+}
+
+.app {
+  width: 100vh;
+  height: 100vh;
+}
+
+h1 {
+  color: white;
+  margin: 0;
+}
