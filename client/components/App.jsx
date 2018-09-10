@@ -7,10 +7,9 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <FrontPage/>
-        {/* <h1>App</h1>
+        {/* <FrontPage/> */}
         <Home/>
-        <Board/> */}
+        <Board/>
       </React.Fragment>
     )
   }

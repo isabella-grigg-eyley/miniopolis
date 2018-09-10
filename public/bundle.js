@@ -20380,15 +20380,15 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _FrontPage = __webpack_require__(28);
+var _FrontPage = __webpack_require__(26);
 
 var _FrontPage2 = _interopRequireDefault(_FrontPage);
 
-var _Home = __webpack_require__(26);
+var _Home = __webpack_require__(27);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _Board = __webpack_require__(27);
+var _Board = __webpack_require__(28);
 
 var _Board2 = _interopRequireDefault(_Board);
 
@@ -20415,7 +20415,8 @@ var App = function (_React$Component) {
       return _react2.default.createElement(
         _react2.default.Fragment,
         null,
-        _react2.default.createElement(_FrontPage2.default, null)
+        _react2.default.createElement(_Home2.default, null),
+        _react2.default.createElement(_Board2.default, null)
       );
     }
   }]);
@@ -20427,98 +20428,6 @@ exports.default = App;
 
 /***/ }),
 /* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Home = function Home() {
-  return _react2.default.createElement(
-    'h1',
-    null,
-    'Home'
-  );
-};
-
-exports.default = Home;
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Board = function (_React$Component) {
-  _inherits(Board, _React$Component);
-
-  function Board(props) {
-    _classCallCheck(this, Board);
-
-    var _this = _possibleConstructorReturn(this, (Board.__proto__ || Object.getPrototypeOf(Board)).call(this, props));
-
-    _this.state = {
-      cells: ["house", "house", "road", null, null, "road"]
-    };
-    return _this;
-  }
-
-  _createClass(Board, [{
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        _react2.default.Fragment,
-        null,
-        _react2.default.createElement(
-          "ul",
-          null,
-          this.state.cells.map(function (cell) {
-            return _react2.default.createElement(
-              "li",
-              { key: cell },
-              cell
-            );
-          })
-        )
-      );
-    }
-  }]);
-
-  return Board;
-}(_react2.default.Component);
-
-exports.default = Board;
-
-/***/ }),
-/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20606,6 +20515,261 @@ var FrontPage = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = FrontPage;
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Home = function Home() {
+  return _react2.default.createElement(
+    'h1',
+    null,
+    'Miniopolis'
+  );
+};
+
+exports.default = Home;
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Cell = __webpack_require__(29);
+
+var _Cell2 = _interopRequireDefault(_Cell);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Board = function (_React$Component) {
+  _inherits(Board, _React$Component);
+
+  function Board(props) {
+    _classCallCheck(this, Board);
+
+    var _this = _possibleConstructorReturn(this, (Board.__proto__ || Object.getPrototypeOf(Board)).call(this, props));
+
+    _this.state = {
+      cells: [],
+      x: 0,
+      y: 0,
+      size: 500,
+      cellsAcross: 10
+    };
+    _this.generateCells = _this.generateCells.bind(_this);
+    return _this;
+  }
+
+  _createClass(Board, [{
+    key: 'randomCellType',
+    value: function randomCellType() {
+      var result = Math.floor(Math.random() * 3);
+      var value = void 0;
+      switch (result) {
+        case 0:
+          value = null;
+          break;
+        case 1:
+          value = "house";
+          break;
+        case 2:
+          value = "shop";
+          break;
+      }
+      return value;
+    }
+  }, {
+    key: 'generateCells',
+    value: function generateCells() {
+      var size = this.state.cellsAcross;
+      var cells = [];
+      for (var i = 0; i < size; i++) {
+        for (var j = 0; j < size; j++) {
+          cells.push({ x: i, y: j, value: this.randomCellType() });
+        }
+      }
+      this.setState({
+        cells: cells
+      });
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.generateCells(10);
+      this.setState({
+        x: window.innerWidth / 2 - this.state.size / 2,
+        y: window.innerHeight / 2 - this.state.size / 2
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var k = -1;
+      return _react2.default.createElement(
+        _react2.default.Fragment,
+        null,
+        _react2.default.createElement(
+          'svg',
+          { height: this.state.size, width: this.state.size, id: 'board' },
+          this.state.cells.map(function (cell) {
+            k++;
+            return _react2.default.createElement(_Cell2.default, { key: k, x: cell.x, y: cell.y, value: cell.value, size: _this2.state.size / _this2.state.cellsAcross });
+          })
+        )
+      );
+    }
+  }]);
+
+  return Board;
+}(_react2.default.Component);
+
+exports.default = Board;
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Cell = function (_React$Component) {
+  _inherits(Cell, _React$Component);
+
+  function Cell(props) {
+    _classCallCheck(this, Cell);
+
+    var _this = _possibleConstructorReturn(this, (Cell.__proto__ || Object.getPrototypeOf(Cell)).call(this, props));
+
+    _this.state = {
+      size: 50,
+      x: 0,
+      y: 0,
+      value: null,
+      styles: {
+        fill: "white",
+        fillOpacity: 1
+      }
+    };
+    _this.changeFill = _this.changeFill.bind(_this);
+    _this.handleHover = _this.handleHover.bind(_this);
+    _this.handleMouseLeave = _this.handleMouseLeave.bind(_this);
+    return _this;
+  }
+
+  _createClass(Cell, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.setState({
+        size: this.props.size,
+        x: this.props.x * this.state.size,
+        y: this.props.y * this.state.size,
+        value: this.props.value,
+        styles: {
+          fill: this.changeFill(this.props.value),
+          fillOpacity: 1,
+          stroke: "black",
+          strokeWidth: 0
+        }
+      });
+    }
+  }, {
+    key: "changeFill",
+    value: function changeFill(sw) {
+      var fill = "white";
+      switch (sw) {
+        case null:
+          fill = "lightgrey";
+          break;
+        case "house":
+          fill = "green";
+          break;
+        case "shop":
+          fill = "blue";
+          break;
+      }
+      return fill;
+    }
+  }, {
+    key: "handleHover",
+    value: function handleHover() {
+      var styles = Object.assign({}, this.state.styles);
+      //styles.strokeWidth = 3;
+      styles.fillOpacity = 0.7;
+      this.setState({ styles: styles });
+    }
+  }, {
+    key: "handleMouseLeave",
+    value: function handleMouseLeave() {
+      var styles = Object.assign({}, this.state.styles);
+      //styles.strokeWidth = 0;
+      styles.fillOpacity = 1;
+      this.setState({ styles: styles });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement("rect", { onMouseOver: this.handleHover, onMouseLeave: this.handleMouseLeave, style: this.state.styles, width: this.state.size, height: this.state.size, x: this.state.x, y: this.state.y });
+    }
+  }]);
+
+  return Cell;
+}(_react2.default.Component);
+
+//fill={this.state.styles.fill}
+
+
+exports.default = Cell;
 
 /***/ })
 /******/ ]);
