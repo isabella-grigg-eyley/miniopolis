@@ -52,8 +52,12 @@ h1 {
 }
 
 #board {
-  display: block;
+  /* display: block; */
   margin: auto;
-  width: 500px;
-  height: 500px;
+  /* width: 600px;
+  height: 600px; */
+}
+
+#game {
+  display: flex;
 }

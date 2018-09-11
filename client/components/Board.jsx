@@ -8,8 +8,8 @@ class Board extends React.Component {
       cells: [],
       x: 0,
       y: 0,
-      size: 500,
-      cellsAcross: 10
+      size: 1000,
+      cellsAcross: 25
     }
     this.generateCells = this.generateCells.bind(this)
   }

@@ -4,7 +4,7 @@ export default class Cell extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      size: 50,
+      size: 40,
       x: 0,
       y: 0,
       value: null,

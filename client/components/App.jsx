@@ -1,5 +1,5 @@
 import React from 'react'
-import FrontPage from './FrontPage'
+import Sidebar from './Sidebar'
 import Home from './Home'
 import Board from './Board'
 
@@ -7,9 +7,11 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {/* <FrontPage/> */}
         <Home/>
-        <Board/>
+        <div id="game">
+          <Sidebar/>
+          <Board/>
+        </div>
       </React.Fragment>
     )
   }
