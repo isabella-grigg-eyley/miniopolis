@@ -66,7 +66,7 @@ export default class Sidebar extends React.Component {
           })}
         </svg> */}
         {this.state.menuIcons.map(icon => {
-            return <MenuIcon key={icon.name} name={icon.name} icon={icon.icon} x={icon.x} y={icon.y}/>
+            return <MenuIcon updateSelected={this.props.updateSelected} key={icon.name} name={icon.name} icon={icon.icon} x={icon.x} y={icon.y}/>
           })}
       </div>
     )

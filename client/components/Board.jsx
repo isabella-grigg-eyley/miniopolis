@@ -5,6 +5,7 @@ class Board extends React.Component {
   constructor(props){
     super(props)
     this.state = {
+      selected: "nothing",
       cells: [],
       boardWidth: 900,
       boardHeight: 720,
@@ -50,7 +51,6 @@ class Board extends React.Component {
     this.generateCells();
     let boardWidth = this.state.cellSize * this.state.cellsWide
     let boardHeight = this.state.cellSize * this.state.cellsHigh
-    console.log({boardHeight, boardWidth})
     this.setState({
       boardWidth: boardWidth,
       boardHeight: boardHeight

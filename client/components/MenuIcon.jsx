@@ -22,7 +22,10 @@ export default class Sidebar extends React.Component {
 
   render(){
     return (
-      <div className="menuIcon">
+      <div className="menuIcon" onClick={() => {
+        this.props.updateSelected(this.state.name)
+      }
+    } >
         <h3>{this.props.icon}</h3>
       </div>
       // <rect x={this.state.x} y={this.state.y} height={this.state.height} width={this.state.width} fill={"white"} stroke="black" strokeWidth="3px"/>

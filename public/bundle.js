@@ -21590,13 +21590,26 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var App = function (_React$Component) {
   _inherits(App, _React$Component);
 
-  function App() {
+  function App(props) {
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+    _this.state = {
+      selected: "nothing"
+    };
+    _this.updateSelected = _this.updateSelected.bind(_this);
+    return _this;
   }
 
   _createClass(App, [{
+    key: 'updateSelected',
+    value: function updateSelected(selected) {
+      this.setState({
+        selected: selected
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -21606,11 +21619,11 @@ var App = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { id: 'game-wrapper' },
-          _react2.default.createElement(_Infobar2.default, null),
+          _react2.default.createElement(_Infobar2.default, { selected: this.state.selected }),
           _react2.default.createElement(
             'div',
             { id: 'game' },
-            _react2.default.createElement(_Sidebar2.default, null),
+            _react2.default.createElement(_Sidebar2.default, { updateSelected: this.updateSelected }),
             _react2.default.createElement(_Board2.default, null)
           )
         )
@@ -21711,11 +21724,13 @@ var Sidebar = function (_React$Component) {
   _createClass(Sidebar, [{
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         'div',
         { className: 'sidebar' },
         this.state.menuIcons.map(function (icon) {
-          return _react2.default.createElement(_MenuIcon2.default, { key: icon.name, name: icon.name, icon: icon.icon, x: icon.x, y: icon.y });
+          return _react2.default.createElement(_MenuIcon2.default, { updateSelected: _this2.props.updateSelected, key: icon.name, name: icon.name, icon: icon.icon, x: icon.x, y: icon.y });
         })
       );
     }
@@ -21781,9 +21796,13 @@ var Sidebar = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         "div",
-        { className: "menuIcon" },
+        { className: "menuIcon", onClick: function onClick() {
+            _this2.props.updateSelected(_this2.state.name);
+          } },
         _react2.default.createElement(
           "h3",
           null,
@@ -21869,6 +21888,7 @@ var Board = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Board.__proto__ || Object.getPrototypeOf(Board)).call(this, props));
 
     _this.state = {
+      selected: "nothing",
       cells: [],
       boardWidth: 900,
       boardHeight: 720,
@@ -21920,7 +21940,6 @@ var Board = function (_React$Component) {
       this.generateCells();
       var boardWidth = this.state.cellSize * this.state.cellsWide;
       var boardHeight = this.state.cellSize * this.state.cellsHigh;
-      console.log({ boardHeight: boardHeight, boardWidth: boardWidth });
       this.setState({
         boardWidth: boardWidth,
         boardHeight: boardHeight
@@ -22091,15 +22110,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Infobar = function (_React$Component) {
   _inherits(Infobar, _React$Component);
 
-  function Infobar(props) {
+  function Infobar() {
     _classCallCheck(this, Infobar);
 
-    var _this = _possibleConstructorReturn(this, (Infobar.__proto__ || Object.getPrototypeOf(Infobar)).call(this, props));
-
-    _this.state = {
-      selected: "nothing"
-    };
-    return _this;
+    return _possibleConstructorReturn(this, (Infobar.__proto__ || Object.getPrototypeOf(Infobar)).apply(this, arguments));
   }
 
   _createClass(Infobar, [{
@@ -22125,7 +22139,7 @@ var Infobar = function (_React$Component) {
             "span",
             { id: "infobar-right" },
             "Selected: ",
-            this.state.selected
+            this.props.selected
           )
         )
       );
