@@ -65,9 +65,7 @@ body {
 
 #game {
   display: flex;
-  padding: 10px;
-  /* width: fit-content; */
-  border: solid black 2px
+  
 }
 
 .menuIcon {
@@ -75,4 +73,18 @@ body {
   margin-bottom: 5px;
   width: 114px;
   text-align: center;
+}
+
+#infobar {
+  margin: auto;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-around;
+  border: solid black 2px;
+}
+
+#game-wrapper {
+  padding: 10px;
+  /* width: fit-content; */
+  border: solid black 2px;
 }

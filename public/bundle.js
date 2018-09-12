@@ -21567,13 +21567,17 @@ var _Sidebar = __webpack_require__(18);
 
 var _Sidebar2 = _interopRequireDefault(_Sidebar);
 
-var _Header = __webpack_require__(23);
+var _Header = __webpack_require__(20);
 
 var _Header2 = _interopRequireDefault(_Header);
 
 var _Board = __webpack_require__(21);
 
 var _Board2 = _interopRequireDefault(_Board);
+
+var _Infobar = __webpack_require__(23);
+
+var _Infobar2 = _interopRequireDefault(_Infobar);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21601,9 +21605,14 @@ var App = function (_React$Component) {
         _react2.default.createElement(_Header2.default, null),
         _react2.default.createElement(
           'div',
-          { id: 'game' },
-          _react2.default.createElement(_Sidebar2.default, null),
-          _react2.default.createElement(_Board2.default, null)
+          { id: 'game-wrapper' },
+          _react2.default.createElement(_Infobar2.default, null),
+          _react2.default.createElement(
+            'div',
+            { id: 'game' },
+            _react2.default.createElement(_Sidebar2.default, null),
+            _react2.default.createElement(_Board2.default, null)
+          )
         )
       );
     }
@@ -21792,7 +21801,37 @@ var Sidebar = function (_React$Component) {
 exports.default = Sidebar;
 
 /***/ }),
-/* 20 */,
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Header = function Header() {
+  return _react2.default.createElement(
+    "header",
+    { className: "header" },
+    _react2.default.createElement(
+      "h1",
+      null,
+      "Miniopolis"
+    )
+  );
+};
+
+exports.default = Header;
+
+/***/ }),
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22035,25 +22074,68 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Header = function Header() {
-  return _react2.default.createElement(
-    "header",
-    { className: "header" },
-    _react2.default.createElement(
-      "h1",
-      null,
-      "Miniopolis"
-    )
-  );
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-exports.default = Header;
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Infobar = function (_React$Component) {
+  _inherits(Infobar, _React$Component);
+
+  function Infobar(props) {
+    _classCallCheck(this, Infobar);
+
+    var _this = _possibleConstructorReturn(this, (Infobar.__proto__ || Object.getPrototypeOf(Infobar)).call(this, props));
+
+    _this.state = {
+      selected: "nothing"
+    };
+    return _this;
+  }
+
+  _createClass(Infobar, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(
+          "p",
+          { id: "infobar" },
+          _react2.default.createElement(
+            "span",
+            { id: "infobar-left" },
+            "Miniopolis"
+          ),
+          _react2.default.createElement(
+            "span",
+            { id: "infobar-centre" },
+            "Funds: $100000"
+          ),
+          _react2.default.createElement(
+            "span",
+            { id: "infobar-right" },
+            "Selected: ",
+            this.state.selected
+          )
+        )
+      );
+    }
+  }]);
+
+  return Infobar;
+}(_react2.default.Component);
+
+exports.default = Infobar;
 
 /***/ })
 /******/ ]);
