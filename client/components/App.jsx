@@ -1,18 +1,18 @@
 import React from 'react'
 import Sidebar from './Sidebar'
-import Home from './Home'
+import Header from './Header'
 import Board from './Board'
 
 class App extends React.Component {
   render() {
     return (
-      <React.Fragment>
-        <Home/>
+      <div id="wrapper">
+        <Header/>
         <div id="game">
           <Sidebar/>
           <Board/>
         </div>
-      </React.Fragment>
+      </div>
     )
   }
 }

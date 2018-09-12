@@ -5,26 +5,27 @@ export default class Sidebar extends React.Component {
     super(props)
     this.state = {
       name: this.props.name || "Geraldine",
+      icon: this.props.icon || "Icon",
       x: this.props.x * this.props.width || 0,
-      y: this.props.y * this.props.height || 0,
-      width: this.props.width || 100,
-      height: this.props.height || 60
+      y: this.props.y * this.props.height || 0
     }
   }
 
   componentDidMount(){
     this.setState({
       name: this.props.name,
+      icon: this.props.icon,
       x: this.props.x * this.props.width,
-      y: this.props.y * this.props.height,
-      width: this.props.width,
-      height: this.props.height
+      y: this.props.y * this.props.height
     })
   }
 
   render(){
     return (
-      <rect x={this.state.x} y={this.state.y} height={this.state.height} width={this.state.width} fill={"white"} stroke="black" strokeWidth="3px"/>
+      <div className="menuIcon">
+        <h3>{this.props.icon}</h3>
+      </div>
+      // <rect x={this.state.x} y={this.state.y} height={this.state.height} width={this.state.width} fill={"white"} stroke="black" strokeWidth="3px"/>
     )
   }
 }

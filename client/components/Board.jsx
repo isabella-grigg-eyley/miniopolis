@@ -6,10 +6,12 @@ class Board extends React.Component {
     super(props)
     this.state = {
       cells: [],
-      x: 0,
-      y: 0,
-      size: 1000,
-      cellsAcross: 25
+      boardWidth: 900,
+      boardHeight: 720,
+      // size: 720,
+      cellSize: 36,
+      cellsWide: 29,
+      cellsHigh: 19
     }
     this.generateCells = this.generateCells.bind(this)
   }
@@ -31,11 +33,12 @@ class Board extends React.Component {
   }
 
   generateCells(){
-    let size = this.state.cellsAcross
+    let width = this.state.cellsWide
+    let height = this.state.cellsHigh
     let cells = []
-    for (let i = 0; i < size; i++){
-      for (let j = 0; j < size; j++) {
-        cells.push({x: i, y: j, value: this.randomCellType()})
+    for (let x = 0; x < width; x++){
+      for (let y = 0; y < height; y++) {
+        cells.push({x: x, y: y, value: this.randomCellType()})
       }
     }
     this.setState({
@@ -44,21 +47,22 @@ class Board extends React.Component {
   }
 
   componentDidMount(){
-    this.generateCells(10);
+    this.generateCells();
+    let boardWidth = this.state.cellSize * this.state.cellsWide
+    let boardHeight = this.state.cellSize * this.state.cellsHigh
+    console.log({boardHeight, boardWidth})
     this.setState({
-      x: window.innerWidth/2 - this.state.size/2,
-      y: window.innerHeight/2 - this.state.size/2
+      boardWidth: boardWidth,
+      boardHeight: boardHeight
     })
   }
 
   render() {
-    let k = -1
     return (
       <React.Fragment>
-        <svg height={this.state.size} width={this.state.size} id="board">
-          {this.state.cells.map(cell => {
-            k++
-            return <Cell key={k} x={cell.x} y={cell.y} value={cell.value} size={this.state.size / this.state.cellsAcross}/>
+        <svg height={this.state.boardHeight} width={this.state.boardWidth} id="board">
+          {this.state.cells.map((cell, i) => {
+            return <Cell key={i} x={cell.x} y={cell.y} value={cell.value} size={this.state.cellSize}/>
           })}
         </svg>
       </React.Fragment>

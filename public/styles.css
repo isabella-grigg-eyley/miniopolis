@@ -1,4 +1,28 @@
+@font-face{
+  font-family: "Newport Classic";
+  src:
+    url('NewportClassicSG-Regular.ttf');
+}
 
+.header {
+  font-family: "Newport Classic";
+  src:
+    url('NewportClassicSG-Regular.ttf');
+  font-size: 36px;
+  text-align: center;
+  color:black;
+}
+
+h1 {
+  margin: 5px;
+}
+
+#wrapper {
+  margin: auto;
+  max-width: 1200px;
+  width: 75em;
+  min-width: 1200px;
+}
 
 .content {
   margin: auto;
@@ -19,21 +43,8 @@
   height: 100vh;
 }
 
-.front-page-box {
-  width: 30%;
-  height: 30%;
-  max-width: 300px;
-  max-height: 200px;
-  border: solid grey 10px;
-  position: relative;
-  left: 33%;
-  top: 33%;
-  text-align: -webkit-center;
-  background-color: green;
-}
-
 * {
-  background-color: lightgrey;
+  background-color: white;
 }
 
 body {
@@ -46,18 +57,22 @@ body {
   height: 100%;
 }
 
-h1 {
-  color: white;
-  margin: 0;
-}
-
 #board {
-  /* display: block; */
   margin: auto;
-  /* width: 600px;
-  height: 600px; */
+  margin-right: inherit;
+  border: solid black 2px;
 }
 
 #game {
   display: flex;
+  padding: 10px;
+  /* width: fit-content; */
+  border: solid black 2px
+}
+
+.menuIcon {
+  border: solid black 2px;
+  margin-bottom: 5px;
+  width: 114px;
+  text-align: center;
 }
