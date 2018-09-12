@@ -27,7 +27,7 @@ class App extends React.Component {
           <Infobar selected={this.state.selected}/>
           <div id="game">
             <Sidebar updateSelected={this.updateSelected}/>
-            <Board/>
+            <Board selected={this.state.selected}/>
           </div>
         </div>
       </div>

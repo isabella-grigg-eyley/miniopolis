@@ -21624,7 +21624,7 @@ var App = function (_React$Component) {
             'div',
             { id: 'game' },
             _react2.default.createElement(_Sidebar2.default, { updateSelected: this.updateSelected }),
-            _react2.default.createElement(_Board2.default, null)
+            _react2.default.createElement(_Board2.default, { selected: this.state.selected })
           )
         )
       );
@@ -21888,7 +21888,6 @@ var Board = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Board.__proto__ || Object.getPrototypeOf(Board)).call(this, props));
 
     _this.state = {
-      selected: "nothing",
       cells: [],
       boardWidth: 900,
       boardHeight: 720,
@@ -21898,28 +21897,29 @@ var Board = function (_React$Component) {
       cellsHigh: 19
     };
     _this.generateCells = _this.generateCells.bind(_this);
+    _this.updateCell = _this.updateCell.bind(_this);
     return _this;
   }
+  // randomCellType(){
+  //   let result = Math.floor(Math.random() * 3)
+  //   let value;
+  //   switch(result) {
+  //     case 0:
+  //       value = null;
+  //       break;
+  //     case 1:
+  //       value = "house";
+  //       break;
+  //     case 2:
+  //       value = "shop";
+  //       break;
+  //   }
+  //   return value;
+  // }
+  /* INIT */
+
 
   _createClass(Board, [{
-    key: 'randomCellType',
-    value: function randomCellType() {
-      var result = Math.floor(Math.random() * 3);
-      var value = void 0;
-      switch (result) {
-        case 0:
-          value = null;
-          break;
-        case 1:
-          value = "house";
-          break;
-        case 2:
-          value = "shop";
-          break;
-      }
-      return value;
-    }
-  }, {
     key: 'generateCells',
     value: function generateCells() {
       var width = this.state.cellsWide;
@@ -21927,7 +21927,7 @@ var Board = function (_React$Component) {
       var cells = [];
       for (var x = 0; x < width; x++) {
         for (var y = 0; y < height; y++) {
-          cells.push({ x: x, y: y, value: this.randomCellType() });
+          cells.push({ x: x, y: y, value: null });
         }
       }
       this.setState({
@@ -21945,6 +21945,24 @@ var Board = function (_React$Component) {
         boardHeight: boardHeight
       });
     }
+
+    /* END INIT */
+
+  }, {
+    key: 'updateCell',
+    value: function updateCell(x, y, value) {
+      console.log("updating cell in board");
+      var cells = this.state.cells;
+      cells.map(function (cell) {
+        if (cell.x === x && cell.y === y) {
+          console.log('Found! X: ' + cell.x + ', Y: ' + cell.y + '. Old value: ' + cell.value + '. New value: ' + value);
+          cell.value = value;
+        }
+      });
+      this.setState({
+        cells: cells
+      });
+    }
   }, {
     key: 'render',
     value: function render() {
@@ -21957,7 +21975,7 @@ var Board = function (_React$Component) {
           'svg',
           { height: this.state.boardHeight, width: this.state.boardWidth, id: 'board' },
           this.state.cells.map(function (cell, i) {
-            return _react2.default.createElement(_Cell2.default, { key: i, x: cell.x, y: cell.y, value: cell.value, size: _this2.state.cellSize });
+            return _react2.default.createElement(_Cell2.default, { key: i, selected: _this2.props.selected, x: cell.x, y: cell.y, value: cell.value, size: _this2.state.cellSize, updateCell: _this2.updateCell });
           })
         )
       );
@@ -22007,14 +22025,19 @@ var Cell = function (_React$Component) {
       x: 0,
       y: 0,
       value: null,
+      hasBuilding: false,
       styles: {
         fill: "white",
         fillOpacity: 1
+      },
+      hasBuildingStyles: {
+        font: "bold 36px sans-serif"
       }
     };
     _this.changeFill = _this.changeFill.bind(_this);
     _this.handleHover = _this.handleHover.bind(_this);
     _this.handleMouseLeave = _this.handleMouseLeave.bind(_this);
+    _this.handleClick = _this.handleClick.bind(_this);
     return _this;
   }
 
@@ -22030,27 +22053,50 @@ var Cell = function (_React$Component) {
           fill: this.changeFill(this.props.value),
           fillOpacity: 1,
           stroke: "black",
-          strokeWidth: 0
+          strokeWidth: 0.1
         }
       });
     }
   }, {
     key: "changeFill",
-    value: function changeFill(sw) {
+    value: function changeFill() {
+      var sw = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
       var fill = "white";
       switch (sw) {
-        case null:
+        case "residential":
+          fill = "lightgreen";
+          break;
+        case "commercial":
+          fill = "lightblue";
+          break;
+        case "industrial":
+          fill = "orange";
+          break;
+        case "road":
+          fill = "grey";
+          break;
+        case "powerline":
+          fill = "yellow";
+          break;
+        case "nothing":
           fill = "lightgrey";
           break;
-        case "house":
-          fill = "green";
+        case "bulldoze":
+          fill = "lightgrey";
+          this.setState({
+            hasBuilding: false
+          });
           break;
-        case "shop":
-          fill = "blue";
+        case null:
+          fill = "lightgrey";
           break;
       }
       return fill;
     }
+
+    /* Hover Effect */
+
   }, {
     key: "handleHover",
     value: function handleHover() {
@@ -22067,10 +22113,56 @@ var Cell = function (_React$Component) {
       styles.fillOpacity = 1;
       this.setState({ styles: styles });
     }
+
+    /* END Hover Effect */
+
+  }, {
+    key: "handleClick",
+    value: function handleClick() {
+      var _this2 = this;
+
+      var selected = this.props.selected;
+      console.log(selected);
+      var styles = Object.assign({}, this.state.styles);
+      styles.fill = this.changeFill(selected);
+      this.setState({
+        value: selected == "nothing" ? this.state.value : selected,
+        styles: styles
+      }, function () {
+        _this2.props.updateCell(_this2.state.x, _this2.state.y, _this2.state.value);
+        _this2.zonedRandomSpawn(_this2.state.value);
+      });
+    }
+  }, {
+    key: "zonedRandomSpawn",
+    value: function zonedRandomSpawn(value) {
+      var _this3 = this;
+
+      if (value == "residential" || value == "commercial" || value == "industrial") {
+        var int = setInterval(function () {
+          if (Math.random() > 0.9) {
+            _this3.setState({
+              hasBuilding: true
+            }, function () {
+              clearInterval(int);
+            });
+          }
+        }, 3000);
+      }
+    }
   }, {
     key: "render",
     value: function render() {
-      return _react2.default.createElement("rect", { onMouseOver: this.handleHover, onMouseLeave: this.handleMouseLeave, style: this.state.styles, width: this.state.size, height: this.state.size, x: this.state.x, y: this.state.y });
+      return _react2.default.createElement(
+        _react2.default.Fragment,
+        null,
+        _react2.default.createElement("rect", { onMouseOver: this.handleHover, onMouseLeave: this.handleMouseLeave, onMouseDown: this.handleClick, style: this.state.styles, width: this.state.size, height: this.state.size, x: this.state.x, y: this.state.y }),
+        this.state.hasBuilding ? _react2.default.createElement(
+          "text",
+          { x: this.state.x, y: this.state.y + 18, styles: this.state.hasBuildingStyles },
+          "B"
+        ) : null
+      );
     }
   }]);
 
